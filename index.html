@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Hola {{nombre}}</h1>
+	<div class="contenedor">
+		<form>
+			¿Cual es tu nombre? <input type="text" ng-model="nombre">
+		</form>
+	</div><br>
+	<div class="ng-app">
+		<input type="text" ng-model="datos" placeholder="ingrese cualquier cosa">
+		{{datos}}
+		<input type="button" value="hola" ng-click="datos='Hola'">
+	</div><br>
+
+	<p ng-repeat="elemento in miColeccion">
+		estas es <span>{{elemento}}</span>
+	</p>
+
+<script src="angular/angular.min.js"></script>
+</body>
+</html>

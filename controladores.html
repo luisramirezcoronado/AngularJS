@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="app" ng-controller="appCtrl as vm">
+<head>
+	<meta charset="UTF-8">
+	<title>Controladores</title>
+</head>
+<body>
+	<input type="text" ng-model="vm.campotexto">
+	<br>
+	{{vm.campotexto}} - {{vm.camposelect}}
+	<br>
+	<select name="" id="" ng-model="vm.camposelect">
+		<option value="Uno">1</option>
+		<option value="Dos">2</option>
+		<option value="Tres"3></option>
+	</select>
+	<br>
+	<input type="button" ng-click="vm.cambioValor()" value="Presione aqui">
+
+<script src="angular/angular.min.js"></script>	
+
+<script>
+	var app= angular.module("app", []);	
+	app.controller("appCtrl", function(){
+		this.campotexto = "Aprendiendo.la";
+		this.camposelect ="Uno";
+
+		this.cambioValor= function(){
+			this.campotexto = "Jeniffer";
+		}
+	});
+</script>
+
+</body>
+<html/>

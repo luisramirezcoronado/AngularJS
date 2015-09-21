@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Directivas</title>
+</head>
+<body>
+	<!--CON NGINIT INICIALIAMOS LAS VARIALES QUE VAMOS A UTILIZAR EN LA APLICACION-->
+	<div ng-app ng-init="pensamientos = [];">
+		<h1>Altavoz en AngularJs</h1>
+		<p>
+			¿Que hay de nuevo?
+			<!--con la directiva ng-model creamos nuestro modelo-->
+			<input type="text" ng-model="nuevoPensamiento">
+			<!--con la directiva ng-click agregamos la informacion de nuestro modelo a la variable inicial en este
+			caso el array pensamientos, y luego de agregar la informacion limpiamos el modelo-->
+			<input type="button" value="Agregar" ng-click="pensamientos.push(nuevoPensamiento); nuevoPensamiento='';">
+		</p>
+		<h2>Pensamientos que has tenido</h2>
+		<!--MOSTRAMOS TODA LA INFORMACION DEL ARRAY COMO SI FUERA UN RECORRIDO FOREACH
+		con la directiva ng-repeat junto ng-init para los indices-->
+		<p ng-repeat="pensamiento in pensamientos" >
+			Pensaste esto {{pensamiento}} con indice {{paso}}
+		</p>
+	</div>
+
+<script src="angular/angular.min.js"></script>	
+</body>
+</html>
