@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>CHECKBOX</title>
+</head>
+<body ng-app="app" ng-controller="appController as vm">
+
+	<p>
+		<input type="checkbox" ng-model="vm.activo" ng-change="vm.avisar()">
+			Este campo es vm.activo y su valor  en el modelo es {{vm.activo}}
+		<br>
+		Ademas tiene un ng-change asocidao al evento vm.avisar().
+	</p>
+	<p>
+		<input type="checkbox" ng-model="vm.clarooscuro" ng-true-value="claro" ng-false-value="oscuro">
+		Este campo tiene el value moidificado. Ahora vale {{vm.clarooscuro}}
+	</p>
+	<p>
+		<input type="button" ng-click="vm.activo='true'" value="presiona para activar el checkbox de arriba">	
+	</p>
+	
+<script src="angular/angular.min.js"></script>
+
+
+<script>
+	var app = angular.module("app", []);
+	app.controller("appController", function(){
+		var vm = this;
+		//vm.activo = true;
+
+		vm.avisar = function(){
+			console.log("cambie");
+		}
+	});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Filtrar Datos</title>
+</head>
+<body>
+	<div ng-app="appAPI" ng-controller="appApiController as vm">
+		<p>
+			Buscar Cerveza:
+			<input type="text" ng-model="vm.nombre">
+			<input type="button" value="Buscar" ng-click="vm.buscarCervezas">
+		</p>
+		<aside>
+			<h2>Filtra:</h2>
+			<input type="text" ng-model="vm.filtroCliente">
+			<h2>Orden</h2>
+			<p>
+				<button ng-click="vm.orden=false">Alfabeticamente</button>
+				<button ng-click="vm.orden=true">Contrario</button>
+			</p>
+			<p>
+				<input type="radio" name="campo" ng-model="vm.campo" value="nombre">Nombre
+				<br>
+				<input type="radio" name="campo" ng-model="vm.campo" value="descripcion">Descripcion
+			</p>
+		</aside>
+		<section>
+			<ul>
+				<li ng-repat="cerveza in vm.cervezas | filter:vm.filtroCliente | orderBy:vm.campo:vm.orden"></li>
+				<span>{{$index + 1}} - {{cerveza.nombre}}</span>: {{cerveza.descripcion}}
+			</ul>
+		</section>
+	</div>
+<script src="angular/angular.min.js"></script>
+
+<script>
+	angular
+			.module("appAPI", [])
+			.controller("appApiController", controladorPrincipal);
+	function controladorPrincipal($scope,$http){
+		var vm = this;
+		vm.orden = false;
+		vm.campo = "nombre";
+
+		var url="http://api.openbeerdatabase.com/v1/beers.json?callback=JSON_CALLBACK";
+		if(vm.nombre){
+			 url += "&query=" + vm.nombre;
+		}
+
+		vm.buscarCervezas = function(){
+			$http.jsonp(url).success(function(respuesta){
+            	console.log("res:", respuesta);
+            	vm.cervezas = respuesta.beers;
+        	});
+		}
+	}
+</script>
+</body>
+</html>
